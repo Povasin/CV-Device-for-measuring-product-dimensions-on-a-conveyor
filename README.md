@@ -24,6 +24,7 @@ uv run pytest -q
 uv run python -m scripts.run_demo
 uv run python -m scripts.run_benchmark
 uv run python scripts/build_report.py
+uv run pre-commit run --all-files
 ```
 
 Демо выдаёт `[50.0, 100.0, 200.0]` мм для синтетического товара
