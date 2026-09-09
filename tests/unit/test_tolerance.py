@@ -24,3 +24,20 @@ def test_all_dimensions_must_satisfy_the_tolerance() -> None:
 def test_negative_dimension_is_invalid() -> None:
     with pytest.raises(ValueError, match="non-negative"):
         tolerance_mm(-1.0)
+
+
+def test_tolerance_rejects_non_finite_dimensions() -> None:
+    with pytest.raises(ValueError, match="finite"):
+        tolerance_mm(float("inf"))
+
+
+def test_dimension_comparison_rejects_empty_arrays() -> None:
+    with pytest.raises(ValueError, match=r"shape \(3,\)"):
+        dimensions_within_tolerance(np.array([]), np.array([]))
+
+
+def test_dimension_comparison_rejects_non_finite_reference_values() -> None:
+    with pytest.raises(ValueError, match="finite"):
+        dimensions_within_tolerance(
+            np.array([10.0, 20.0, 30.0]), np.array([10.0, float("inf"), 30.0])
+        )

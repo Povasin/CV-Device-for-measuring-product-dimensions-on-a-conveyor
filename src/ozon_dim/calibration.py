@@ -7,6 +7,8 @@ from dataclasses import dataclass
 import numpy as np
 import numpy.typing as npt
 
+from ozon_dim.geometry.transforms import validate_rigid_transform
+
 
 @dataclass(frozen=True, slots=True)
 class Calibration:
@@ -18,12 +20,6 @@ class Calibration:
     def __post_init__(self) -> None:
         if not self.calibration_id:
             raise ValueError("calibration_id must not be empty")
-        if self.transform.shape != (4, 4):
-            raise ValueError("transform must have shape (4, 4)")
-        if not np.allclose(self.transform[3], [0.0, 0.0, 0.0, 1.0]):
-            raise ValueError("transform must have a homogeneous final row")
-        rotation = self.transform[:3, :3]
-        if not np.allclose(rotation.T @ rotation, np.eye(3), atol=1e-8):
-            raise ValueError("transform rotation must be orthonormal")
-        if not np.isclose(np.linalg.det(rotation), 1.0, atol=1e-8):
-            raise ValueError("transform rotation must have determinant +1")
+        transform = np.array(validate_rigid_transform(self.transform), copy=True)
+        transform.setflags(write=False)
+        object.__setattr__(self, "transform", transform)

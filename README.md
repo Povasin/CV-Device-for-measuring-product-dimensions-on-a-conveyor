@@ -2,9 +2,15 @@
 
 Инженерный проект для варианта 1 тестового задания Ozon Tech / Университет Иннополис 2026: определение габаритов товара на движущемся конвейере.
 
-Полный план, требования, допущения и текущая задача находятся в [`implementation_plan.md`](implementation_plan.md), [`docs/requirements.md`](docs/requirements.md), [`docs/assumptions.md`](docs/assumptions.md) и [`TASK.md`](TASK.md).
+Требования, допущения, аудит и текущая задача находятся в
+[`docs/requirements.md`](docs/requirements.md), [`docs/assumptions.md`](docs/assumptions.md),
+[`docs/final_audit.md`](docs/final_audit.md) и [`TASK.md`](TASK.md). Проектная
+конфигурация оборудования и монтаж — в [`docs/hardware.md`](docs/hardware.md),
+контракты профилей и quality gates — в [`docs/architecture.md`](docs/architecture.md).
 
-Реализация находится в ранней фазе: точность реального сенсора пока не подтверждена экспериментом.
+Реализовано офлайн-ядро: строгие контракты профиля и калибровки, компенсация
+движения энкодером, контроль полноты ракурсов, сегментация и durable outbox.
+Точность реального сенсора и exact MVBB пока не подтверждены экспериментом.
 # Conveyor Dimensioning System - вариант 1
 
 Проект реализует проверяемый офлайн baseline для измерения габаритов товара на

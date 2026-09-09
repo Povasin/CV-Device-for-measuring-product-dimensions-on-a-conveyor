@@ -33,3 +33,10 @@ def test_approximate_oriented_bounding_box_rejects_less_than_four_points() -> No
 
     with pytest.raises(ValueError, match="at least four points"):
         approximate_oriented_bounding_box(points)
+
+
+def test_approximate_oriented_bounding_box_rejects_a_coplanar_cloud_before_qhull() -> None:
+    points = np.array([[0.0, 0.0, 0.0], [10.0, 0.0, 0.0], [0.0, 10.0, 0.0], [10.0, 10.0, 0.0]])
+
+    with pytest.raises(ValueError, match="span three dimensions"):
+        approximate_oriented_bounding_box(points)

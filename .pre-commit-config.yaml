@@ -6,6 +6,11 @@ repos:
         entry: uv run ruff check src tests scripts
         language: system
         pass_filenames: false
+      - id: ruff-format
+        name: ruff-format
+        entry: uv run ruff format --check src tests scripts
+        language: system
+        pass_filenames: false
       - id: mypy
         name: mypy
         entry: uv run mypy src scripts

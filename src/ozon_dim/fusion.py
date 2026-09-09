@@ -20,4 +20,6 @@ def fuse_point_clouds(
         raise ValueError("point_clouds and transforms must have the same length")
     if not point_clouds:
         return np.empty((0, 3), dtype=np.float64)
-    return np.vstack([transform_points(points, transform) for points, transform in zip(point_clouds, transforms)])
+    return np.vstack(
+        [transform_points(points, transform) for points, transform in zip(point_clouds, transforms)]
+    )

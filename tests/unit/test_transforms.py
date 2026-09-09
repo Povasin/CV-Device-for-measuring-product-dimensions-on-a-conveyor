@@ -33,3 +33,11 @@ def test_transform_points_rejects_points_without_three_coordinates() -> None:
 
     with pytest.raises(ValueError, match=r"points must have shape \(N, 3\)"):
         transform_points(invalid_points, np.eye(4, dtype=np.float64))
+
+
+def test_transform_points_rejects_a_non_rigid_transform() -> None:
+    transform = np.eye(4, dtype=np.float64)
+    transform[0, 0] = 2.0
+
+    with pytest.raises(ValueError, match="orthonormal"):
+        transform_points(np.array([[1.0, 2.0, 3.0]], dtype=np.float64), transform)

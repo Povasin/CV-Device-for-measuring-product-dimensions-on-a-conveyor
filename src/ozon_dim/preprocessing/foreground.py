@@ -13,8 +13,13 @@ def points_above_conveyor(
 
     Inputs must already be expressed in the conveyor coordinate system.
     """
-    if points.ndim != 2 or points.shape[1] != 3:
+    points_array = np.asarray(points, dtype=np.float64)
+    if points_array.ndim != 2 or points_array.shape[1] != 3:
         raise ValueError("points must have shape (N, 3)")
+    if not np.all(np.isfinite(points_array)):
+        raise ValueError("points must contain only finite values")
+    if not np.isfinite(conveyor_z_mm) or not np.isfinite(min_height_mm):
+        raise ValueError("conveyor_z_mm and min_height_mm must be finite")
     if min_height_mm < 0:
         raise ValueError("min_height_mm must be non-negative")
-    return points[points[:, 2] > conveyor_z_mm + min_height_mm]
+    return points_array[points_array[:, 2] > conveyor_z_mm + min_height_mm]

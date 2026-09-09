@@ -32,8 +32,11 @@ def run_synthetic_benchmark(cases_mm: list[tuple[float, float, float]]) -> Bench
     passed: list[bool] = []
     for dimensions in cases_mm:
         result = measure_product(synthetic_product_cloud(dimensions))
+        measured_dimensions = result.dimensions_mm
+        if measured_dimensions is None:
+            raise RuntimeError("synthetic benchmark received a rejected measurement")
         reference = np.sort(np.asarray(dimensions, dtype=np.float64))
-        measured = np.sort(result.dimensions_mm)
+        measured = np.sort(measured_dimensions)
         absolute_errors.append(np.abs(measured - reference))
         passed.append(dimensions_within_tolerance(measured, reference))
     return BenchmarkReport(
