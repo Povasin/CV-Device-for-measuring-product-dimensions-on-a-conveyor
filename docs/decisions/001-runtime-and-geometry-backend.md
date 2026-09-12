@@ -2,7 +2,7 @@
 
 ## Контекст
 
-На рабочей станции установлен Python 3.14, но базовый stack тестового проекта требует воспроизводимый 3D backend. Нужны NumPy, OpenCV, Open3D, тестовый runner, linter и type checker.
+На рабочей станции установлен Python 3.14, но базовый stack тестового проекта требует воспроизводимый 3D backend. Нужны NumPy, Open3D, тестовый runner, linter и type checker.
 
 ## Варианты
 
@@ -18,7 +18,7 @@
 
 - **Подтверждённый факт:** релиз Open3D 0.19.0 публикует wheel `cp312-win_amd64` и заявляет поддержку Python 3.12: [Open3D release 0.19](https://github.com/isl-org/Open3D/releases).
 - **Подтверждённый факт:** Python 3.14 на Windows не поддерживается стабильным Open3D 0.19.0: [Open3D discussion](https://github.com/isl-org/Open3D/discussions/7456).
-- **Подтверждённый результат P1:** в созданной среде импортируются NumPy 2.5.3, OpenCV 4.14.0.94, Open3D 0.19.0 и Pydantic 2.13.5; pytest, Ruff и mypy доступны.
+- **Подтверждённый результат P1:** в созданной среде импортируются NumPy и Open3D 0.19.0; pytest, Ruff и mypy доступны. OpenCV, Pydantic и ReportLab исключены как неиспользуемые прямые зависимости рабочего CV-пайплайна.
 - **Подтверждённый результат P1:** в установленном Open3D 0.19.0 `open3d.t.geometry.OrientedBoundingBox` содержит `create_from_points`, но `MethodOBBCreate` отсутствует. Следовательно, `MINIMAL_JYLANKI` нельзя использовать как API pinned runtime.
 
 ## Последствия

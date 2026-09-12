@@ -6,10 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "numpy>=2.0,<3.0",
-    "opencv-python>=4.10,<5.0",
     "open3d==0.19.0",
-    "pydantic>=2.10,<3.0",
-    "reportlab>=4.2,<5.0",
 ]
 
 [build-system]
@@ -42,5 +39,5 @@ strict = true
 files = ["src"]
 
 [[tool.mypy.overrides]]
-module = ["open3d", "reportlab.*"]
+module = ["open3d"]
 ignore_missing_imports = true
