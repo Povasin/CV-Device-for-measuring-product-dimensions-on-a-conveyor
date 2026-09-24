@@ -58,7 +58,7 @@ The qualification-stage design uses three laser line profilers around the convey
 - a photoelectric trigger for object events.
 
 <p align="center">
-  <img src="docs/images/sensor-layout.png" width="900" alt="Proposed sensor layout around the conveyor">
+  <img src="sxema.png" width="900" alt="Proposed sensor layout around the conveyor">
 </p>
 
 ### Coordinate system
@@ -96,7 +96,7 @@ For the top profiler mounted at `Z = 1300 mm`, a conservative linear interpolati
 Even at the upper boundary of the working volume, the preliminary field of view remains wider than the required 600 mm section.
 
 <p align="center">
-  <img src="docs/images/field-of-view.png" width="900" alt="Field of view calculation for the top laser profiler">
+  <img src="vision.png" width="900" alt="Field of view calculation for the top laser profiler">
 </p>
 
 This is a **geometric coverage estimate**, not a proof of final measurement accuracy. Mounting hardware, occlusion, reflectivity and real calibration still have to be validated on the physical stand.
